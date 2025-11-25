@@ -21,34 +21,22 @@ This project is a AI-powered mobile banking demo application. It consists of a P
     *   Download the **Secure Connect Bundle** (zip file).
     *   Create an **Application Token** with `Database Administrator` role (Client ID & Client Secret).
 
-### 2. Backend Setup
+### 2. Quick Start (Recommended)
 
-The backend handles transaction data and connects to Astra DB.
+The project includes an interactive setup script that handles dependencies, configuration, and database initialization for both backend and frontend.
 
-1.  **Navigate to the backend directory**:
-    ```bash
-    cd backend
-    ```
+1.  **Place your Secure Connect Bundle** in the `backend/` directory.
 
-2.  **Configure Credentials**:
-    *   Place your downloaded Secure Connect Bundle zip file in the `backend/` directory.
-    *   Create or update `env_vars.yaml` with your Astra credentials:
-        ```yaml
-        ASTRA_CLIENT_ID: "your_client_id"
-        ASTRA_CLIENT_SECRET: "your_client_secret"
-        SECURE_CONNECT_BUNDLE: "secure-connect-your-db.zip"
-        CUSTOMER_ID: "97074301-cb76-407c-b97c-fa1f7c43b286" # Default UUID, can be changed
-        NUM_OF_TRANSACTIONS: "10"
-        ```
-
-3.  **Run the Setup Script**:
-    This script will set up the virtual environment, install dependencies, update the schema, insert mock data, and start the server.
+2.  **Run the Setup Script**:
     ```bash
     ./setup.sh
     ```
-    This will set up both the backend (venv, dependencies, database) and frontend (dependencies, env vars).
+    *   The script will prompt you for your Astra DB credentials if they are not already configured.
+    *   It will install all Python and Node.js dependencies.
+    *   It will initialize the database schema and insert mock transaction data.
 
-    After setup is complete, you will need two terminal windows:
+3.  **Start the Application**:
+    Open two terminal windows:
 
     **Terminal 1 (Backend):**
     ```bash
@@ -62,56 +50,26 @@ The backend handles transaction data and connects to Astra DB.
     cd frontend
     npm run dev
     ```
-
-    *Alternatively, you can run the steps manually:*
-
-    1.  **Install Dependencies**:
-        ```bash
-        python -m venv venv
-        source venv/bin/activate
-        pip install -r requirements.txt
-        pip install pyyaml
-        ```
-
-    2.  **Initialize Database Schema & Data**:
-        ```bash
-        python update_schema.py
-        python insert_transactions.py
-        ```
-
-    3.  **Run the API Server**:
-        ```bash
-        python api.py
-        ```
-
-### 3. Frontend Setup
-
-The frontend is a React application using Vite.
-
-1.  **Navigate to the frontend directory**:
-    ```bash
-    cd ../frontend
-    ```
-
-2.  **Configure Environment Variables**:
-    *   Copy the .env.local.example file to a `.env` file in the `frontend/` directory:
-        ```env
-        VITE_GEMINI_API_KEY=your_gemini_api_key
-        VITE_CUSTOMER_ID=97074301-cb76-407c-b97c-fa1f7c43b286
-        VITE_BANKING_API_URL=/api
-        ```
-    *   *Note: `VITE_BANKING_API_URL` is set to `/api` to use the Vite proxy configured in `vite.config.ts`.*
-
-3.  **Install Dependencies**:
-    ```bash
-    npm install
-    ```
-
-4.  **Run the Application**:
-    ```bash
-    npm run dev
-    ```
     The app will be available at `http://localhost:3000`.
+
+### 3. Manual Setup
+
+If you prefer to set up manually:
+
+#### Backend
+
+1.  Navigate to `backend/`.
+2.  Create `env_vars.yaml` with your credentials (see `env_vars.yaml.local` for example).
+3.  Create a virtual environment and install requirements: `pip install -r requirements.txt`.
+4.  Run `python update_schema.py` and `python insert_transactions.py`.
+5.  Start server: `python api.py`.
+
+#### Frontend
+
+1.  Navigate to `frontend/`.
+2.  Create `.env.local` (copy from `.env.local.example`).
+3.  Install dependencies: `npm install`.
+4.  Start dev server: `npm run dev`.
 
 ## Architecture
 
