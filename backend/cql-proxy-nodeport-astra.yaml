@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cql-proxy-nodeport
+  namespace: wxd
+  labels:
+    app: cql-proxy
+spec:
+  type: NodePort
+  ports:
+  - port: 9042
+    targetPort: 9042
+    protocol: TCP
+  selector:
+    app: cql-proxy

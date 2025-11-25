@@ -1,0 +1,7 @@
+env_vars.yaml
+venv/
+__pycache__/
+*.zip
+*.pyc
+.DS_Store
+*.local

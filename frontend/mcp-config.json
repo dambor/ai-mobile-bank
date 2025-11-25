@@ -1,0 +1,11 @@
+{
+    "mcpServers": {
+        "lf-mobilebank": {
+            "command": "/Users/glenio.borges/miniconda3/bin/uvx",
+            "args": [
+                "mcp-proxy",
+                "http://localhost:7860/api/v1/mcp/project/67240574-f02c-4eec-baee-e5ae822533d3/sse"
+            ]
+        }
+    }
+}

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cql-proxy-pnc
+  namespace: wxd
+  labels:
+    app: cql-proxy-pnc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cql-proxy-pnc
+  template:
+    metadata:
+      labels:
+        app: cql-proxy-pnc
+    spec:
+      containers:
+      - name: cql-proxy-pnc
+        image: datastax/cql-proxy:v0.2.0
+        args:
+        - --astra-token
+        - AstraCS:YOUR_TOKEN_HERE
+        - --astra-database-id
+        - c3d47453-a871-46fb-9d66-f11ec77e29e8
+        ports:
+        - containerPort: 9042
+          protocol: TCP
